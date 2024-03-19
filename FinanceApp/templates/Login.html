@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Wizard-v6</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/opensans-font.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
+	<!-- datepicker -->
+	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/jquery-ui.min.css'%}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'User_panel/Login/css/style.css'%}"/>
+    <style>
+  
+    </style>
+</head>
+<body>
+	<div class="page-content">
+		<div class="wizard-heading">Money Mentor Hub</div>
+		<div class="wizard-v6-content">
+		
+			<div class="wizard-form">
+		        <form class="form-register" id="form-register" action="#" method="post">
+				{%csrf_token%}
+		        	<div id="form-total">
+		        		<!-- SECTION 1 -->
+			            <!-- <h2></h2> -->
+			            <section>
+			                <div class="inner">			                	
+								<div class="form-row">
+									<div class="form-holder">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="first_name" name="Email" required>
+											<span class="label">Email</span>
+										</label>
+									</div>
+									
+								</div> 
+								<div class="form-row">
+									<div class="form-holder">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="phone" name="Password" required>
+											<span class="label">Password</span>
+										</label>
+									</div>
+								
+								</div>
+								<div class="form-row">
+									<div class="confirm-button">
+										<button type="submit" class="btn-primary"  name="login">Confirm</button>
+									 </div>
+								</div>
+							</div>
+						
+			            </section>
+					  
+                          
+		        	</div>
+		        </form>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'User_panel/Login/js/jquery-3.3.1.min.js'%}"></script>
+	<script src="{% static 'User_panel/Login/js/jquery.steps.js'%}"></script>
+	<script src="{% static 'User_panel/Login/js/jquery-ui.min.js'%}"></script>
+	<!-- <script src="{% static 'User_panel/Login/js/main.js'%}"></script> -->
+</body>
+</html>
