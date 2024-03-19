@@ -20282,13 +20282,22 @@ pre[class*=language-]:before {
     transition: all 0.3s ease-in-out;
 }
 
+.header-logo{
+    width: 200px !important;
+}
+.header-logo img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 .pcoded-header .m-header {
     width: 235px;
     position: relative;
     height: 56px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     padding: 0 25px;
 }
 

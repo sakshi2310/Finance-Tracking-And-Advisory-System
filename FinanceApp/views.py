@@ -18,10 +18,10 @@ def signup(request):
     if "Register" in request.POST:
         UserRegisterobj = User_RegisterForm(request.POST)
         UserRegisterobj.save()
-        return redirect("/FinanceApp/Dashboard")
+        return redirect("/Dashboard")
 
     # if 'Register_google' in
-    return render(request, "signup.html", {"userfrm": UserRegisterobj})
+    return render(request, "Signup.html", {"userfrm": UserRegisterobj})
 
 
 def login(request):
@@ -73,7 +73,7 @@ def login(request):
 
                # store the otp in the session
                request.session["otp"] = otp
-               return redirect("/FinanceApp/otp")
+               return redirect("/otp")
     return render(request, "Login.html")
 
 
@@ -89,7 +89,7 @@ def opt_verfication(request):
             # destory the session of otp
             if "otp" in request.session:
                 del request.session["otp"]
-            return redirect("/FinanceApp/dashboard")
+            return redirect("/dashboard")
 
     return render(request, "otp.html")
 
@@ -108,4 +108,4 @@ def sidebar_header(request):
 
 def logout(request):
     del request.session["user_id"]
-    return redirect("/FinanceApp/Login")
+    return redirect("/Login")
