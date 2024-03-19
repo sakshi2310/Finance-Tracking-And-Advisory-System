@@ -17,14 +17,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from FinanceApp.views import *
-from FinanceApp.urls import *
 from AdminFinanceApp.views import *
-from AdminFinanceApp.urls import *
 
 
 urlpatterns = [
  
-    path('FinanceApp/',include('FinanceApp.urls')),
-    path('AdminFinanceApp/',include('AdminFinanceApp.urls')),
+    path('FinanceApp/',home,name='home'),
+    path('FinanceApp/signup/',signup,name='signup'),
+    path('FinanceApp/Login/',login,name='login'),
+    path('FinanceApp/dashboard/',dashboard,name='dashboard'),
+    path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
+    path('FinanceApp/income/',income,name='income'),
+    path('FinanceApp/sidebar-header/',sidebar_header,name='sidebar_header'),
+    path('FinanceApp/logout/',logout,name='logout'),
+
+    path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),
+    path('AdminFinanceApp/Admin-Register/',admin_Register,name='Register'),
+    path('AdminFinanceApp/Admin-Dashboard/',admin_Dashboard,name='Dashboard'),
+    path('AdminFinanceApp/Admin-Add-IncomeSource/',admin_Add_Income_Source,name='admin_Add_Income_Source'),
+    path('AdminFinanceApp/Admin-View-IncomeSource/',admin_View_Income_Source,name='admin_Add_Amount_Type'),
+    path('AdminFinanceApp/Admin-Add-ExpanceSource/',admin_Add_Expance_Source,name='admin_Add_Expance_Source'),
+    path('AdminFinanceApp/Admin-View-ExpanceSource/',admin_View_Expance_Source,name='admin_Add_Amount_Type'),
+    path('AdminFinanceApp/Admin-Add-AmountType/',admin_Add_Amount_Type,name='admin_Add_Amount_Type'),
+    path('AdminFinanceApp/Admin-View-AmountType/',admin_View_Amount_Type,name='admin_Add_Amount_Type'),
     path('admin/', admin.site.urls),
 ]
