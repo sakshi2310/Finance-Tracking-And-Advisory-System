@@ -22,12 +22,9 @@ body {
 	-ms-flex-direction: column;
 	-moz-flex-direction: column;
 	-webkit-flex-direction: column;
-<<<<<<< HEAD
     background-image: linear-gradient(45deg, rgba(14, 14, 14,0.03) 0%, rgba(14, 14, 14,0.03) 38%,rgba(250, 250, 250,0.03) 38%, rgba(250, 250, 250,0.03) 45%,rgba(113, 113, 113,0.03) 45%, rgba(113, 113, 113,0.03) 100%),linear-gradient(135deg, rgba(148, 148, 148,0.03) 0%, rgba(148, 148, 148,0.03) 36%,rgba(219, 219, 219,0.03) 36%, rgba(219, 219, 219,0.03) 63%,rgba(62, 62, 62,0.03) 63%, rgba(62, 62, 62,0.03) 100%),linear-gradient(90deg, rgb(34,34,34),rgb(34,34,34));
     /* height: 100vh; */
     /* height: 100%; */
-=======
->>>>>>> 75fde50c6e0b81dc43a2924ebe97dafa2240140d
 }
 .wizard-heading {
     color: #fff;
@@ -43,11 +40,8 @@ body {
 }
 .wizard-v6-content   {
     /* padding: 20px 30px; */
-<<<<<<< HEAD
 	width: 900px;
-=======
 	width: 70%;
->>>>>>> 75fde50c6e0b81dc43a2924ebe97dafa2240140d
 	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 	-o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
 	-ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
@@ -69,9 +63,9 @@ body {
 .wizard-v6-content .wizard-form {
 	width: 100%;
 	/* background: #525575; */
-    background-color: 
-    #545252;
+    /* background-color: #545252; */
     /* background-color:#595454; */
+    background-color: #2C3E50;
 	border-radius: 10px;
 	-o-border-radius: 10px;
 	-ms-border-radius: 10px;

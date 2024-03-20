@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 import random
 from django.core.mail import EmailMessage
+from django.contrib import messages 
 
 
 # Create your views here.
@@ -18,33 +19,30 @@ def signup(request):
     if "Register" in request.POST:
         UserRegisterobj = User_RegisterForm(request.POST)
         UserRegisterobj.save()
-        return redirect("/Dashboard")
+        return redirect("/FinanceApp/Dashboard")
 
     # if 'Register_google' in
     return render(request, "Signup.html", {"userfrm": UserRegisterobj})
 
-
 def login(request):
     if "user_id" in request.session:
-        return redirect("/dashboard")
+        return redirect("/FinanceApp/dashboard")
+    invalid_credentials = False
     if "login" in request.POST:
-          Email = request.POST["Email"]
-          Password = request.POST["Password"]
-          obj = User_Register.objects.filter(Email=Email, Password=Password)
+        Email = request.POST["Email"]
+        Password = request.POST["Password"]
+        obj = User_Register.objects.filter(Email=Email, Password=Password)
+        otp = random.randint(1000, 9999)
+        if obj.count() == 1:
+            print(Email)
+            row = obj.get()
+            name = User_Register.objects.filter(Email=Email, Password=Password).get()
           
-     
-        # generate the random number
-          otp = random.randint(1000, 9999)
-          if obj.count() == 1:
-               print(Email)
-               row = obj.get()
-               name = User_Register.objects.filter(Email=Email, Password=Password).get()
-          
-               print(name)
+            print(name)
                # print(obj.Username)
                # send the mail
-               subject = "Welcome to Money Mentor Hub - Confirm Your Registration"
-               message = f"""<html>
+            subject = "Welcome to Money Mentor Hub - Confirm Your Registration"
+            message = f"""<html>
                               <head></head>
                               <body>
                               <p>Dear,{name.Username}</p>
@@ -58,39 +56,41 @@ def login(request):
                               <p>Best regards,<br>Money Mentor Hub Team</p>
                               </body>
                               </html>"""
-               email_form = settings.EMAIL_HOST_USER
-               email = [
+            email_form = settings.EMAIL_HOST_USER
+            email = [
                     Email,
                ]
                # send_mail(subject, message, email_form, email, fail_silently=False)
 
-               msg = EmailMessage(subject, message, email_form, email)
-               msg.content_subtype = "html"  # Set the content type to HTML
-               msg.send(fail_silently=False)
+            try:
+                msg = EmailMessage(subject, message, email_form, email)
+                msg.content_subtype = "html"  # Set the content type to HTML
+                msg.send(fail_silently=False)
+            except:
+                print()
 
                # user session
-               request.session["user_id"] = row.id
+            request.session["user_id"] = row.id
 
                # store the otp in the session
-               request.session["otp"] = otp
-               return redirect("/otp")
-    return render(request, "Login.html")
+            request.session["otp"] = otp
+            return redirect("/FinanceApp/otp/")
+        else:
+            invalid_credentials = True
+        # generate the random number    
+    return render(request, "Login.html",{'invalid_credentials': invalid_credentials})
 
 
 def opt_verfication(request):
     # get the opt from the session
     otp = request.session.get("otp", None)
-    print("server", otp)
     if "otp" in request.POST:
         user_otp = int(request.POST["otp"])
-        print("user", user_otp)
         if user_otp == otp:
-
             # destory the session of otp
             if "otp" in request.session:
                 del request.session["otp"]
-            return redirect("/dashboard")
-
+            return redirect("/FinanceApp/dashboard")
     return render(request, "otp.html")
 
 
@@ -108,4 +108,4 @@ def sidebar_header(request):
 
 def logout(request):
     del request.session["user_id"]
-    return redirect("/Login")
+    return redirect("/FinanceApp/Login")

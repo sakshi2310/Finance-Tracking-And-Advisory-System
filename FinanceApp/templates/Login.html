@@ -13,9 +13,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/jquery-ui.min.css'%}">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="{% static 'User_panel/Login/css/Login-style.css'%}"/>
-    <style>
-  
-    </style>
+    <script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    // Reset input fields when the page is loaded
+	    document.getElementById("form-register").reset();
+	});
+ </script>
 </head>
 <body>
 	<div class="page-content">
@@ -29,12 +32,36 @@
 		        		<!-- SECTION 1 -->
 					   <div class="wizard-heading">Money Mentor Hub</div>
 			            <!-- <h2></h2> -->
+					  
+					  
 			            <section>
-			                <div class="inner">			                	
+			                <div class="inner">
+								{% if invalid_credentials %}			                	
+								<div class="form-row">
+									<div class="form-holder">
+										<label class="form-row-inner" style="border-color: red;">
+											<input type="text" class="form-control" id="Email" name="Email" required>
+											<span class="label" style="color: red;">Invalid Email</span>
+										</label>
+									</div>
+									
+								</div> 
+								<div class="form-row">
+									<div class="form-holder">
+										<label class="form-row-inner" style="border-color: red;">
+											<input type="text" class="form-control" id="Password" name="Password"  style="color: red;"required>
+											<span class="label" style="color: red;">Invalid Password</span>
+										</label>
+									</div>
+								
+								</div>
+								
+								<!-- <p style="color: red;">Invalid email or password. Please try again.</p> -->
+								{% else %}
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner">
-											<input type="text" class="form-control" id="first_name" name="Email" required>
+											<input type="text" class="form-control" id="Email" name="Email" required>
 											<span class="label">Email</span>
 										</label>
 									</div>
@@ -43,14 +70,16 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner">
-											<input type="text" class="form-control" id="phone" name="Password" required>
+											<input type="text" class="form-control" id="Password" name="Password" required>
 											<span class="label">Password</span>
 										</label>
 									</div>
 								
 								</div>
+								{% endif %}
 								<div class="form-row">
 									<div class="confirm-button">
+										<!-- <p id="error-message" style="display: none; color: red;"></p> -->
 										<button type="submit" class="btn-primary"  name="login">Confirm</button>
 									 </div>
 								</div>
@@ -68,5 +97,6 @@
 	<script src="{% static 'User_panel/Login/js/jquery.steps.js'%}"></script>
 	<script src="{% static 'User_panel/Login/js/jquery-ui.min.js'%}"></script>
 	<!-- <script src="{% static 'User_panel/Login/js/main.js'%}"></script> -->
+	<script src="{% static 'User_panel/Login/js/login.js'%}"></script>
 </body>
 </html>

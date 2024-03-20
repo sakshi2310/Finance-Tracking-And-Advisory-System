@@ -20766,6 +20766,7 @@ pre[class*=language-]:before {
     display: flex;
     height: 60px !important;
     align-items: center;
+    margin-bottom: 15px;
 }
 .header_char{
     width: 50px !important;
@@ -20827,7 +20828,7 @@ pre[class*=language-]:before {
 
 .pcoded-navbar .pcoded-inner-navbar li > a > .pcoded-micon {
     font-size: 16px;
-    padding: 0;
+    padding: 0px;
     margin-right: 5px;
     border-radius: 4px;
     width: 30px;

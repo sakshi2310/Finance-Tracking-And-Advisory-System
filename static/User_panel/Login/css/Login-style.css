@@ -64,7 +64,9 @@ body {
 .wizard-v6-content .wizard-form {
 	width: 100%;
 	/* background: #525575; */
-    background-color: #44444429;
+    background-color: #545252;
+    /* background-color: #435970; */
+    /* background-color: #44444429; */
 	border-radius: 10px;
 	-o-border-radius: 10px;
 	-ms-border-radius: 10px;
@@ -276,6 +278,15 @@ body {
     -webkit-box-sizing: border-box;
     -o-box-sizing: border-box;
     -ms-box-sizing: border-box;
+}
+.invalid-credentials input[type="text"],
+.invalid-credentials input[type="password"] {
+    border: 1px solid red; /* Add red border to input fields */
+    color: red; /* Set text color to red */
+}
+
+.invalid-credentials .invalid-message {
+    color: red; /* Set error message color to red */
 }
 .inner .form-row .form-holder .form-control:focus + .label, 
 .inner .form-row .form-holder .form-control:valid + .label {

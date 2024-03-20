@@ -17,31 +17,31 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from FinanceApp.views import *
-<<<<<<< HEAD
 # from FinanceApp.urls import *
 from AdminFinanceApp.views import *
 # from AdminFinanceApp.urls import *
-=======
 from AdminFinanceApp.views import *
->>>>>>> 75fde50c6e0b81dc43a2924ebe97dafa2240140d
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
  
+    path('',home,name='home'),
     path('FinanceApp/',home,name='home'),
     path('FinanceApp/signup/',signup,name='signup'),
     path('FinanceApp/Login/',login,name='login'),
+    path('Login', RedirectView.as_view(url='/Login/', permanent=True)),
     path('FinanceApp/dashboard/',dashboard,name='dashboard'),
     path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
     path('FinanceApp/income/',income,name='income'),
     path('FinanceApp/sidebar-header/',sidebar_header,name='sidebar_header'),
     path('FinanceApp/logout/',logout,name='logout'),
 
-<<<<<<< HEAD
+
     # path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),
     # path('AdminFinanceApp/Admin-Register/',admin_Register,name='Register'),
     # path('AdminFinanceApp/Admin-Dashboard/',admin_Dashboard,name='Dashboard'),
-=======
+
     path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),
     path('AdminFinanceApp/Admin-Register/',admin_Register,name='Register'),
     path('AdminFinanceApp/Admin-Dashboard/',admin_Dashboard,name='Dashboard'),
@@ -51,6 +51,6 @@ urlpatterns = [
     path('AdminFinanceApp/Admin-View-ExpanceSource/',admin_View_Expance_Source,name='admin_Add_Amount_Type'),
     path('AdminFinanceApp/Admin-Add-AmountType/',admin_Add_Amount_Type,name='admin_Add_Amount_Type'),
     path('AdminFinanceApp/Admin-View-AmountType/',admin_View_Amount_Type,name='admin_Add_Amount_Type'),
->>>>>>> 75fde50c6e0b81dc43a2924ebe97dafa2240140d
+    # path('AdminFinanceApp/Admin-View-AmountType/')
     path('admin/', admin.site.urls),
 ]
