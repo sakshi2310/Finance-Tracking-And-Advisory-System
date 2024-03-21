@@ -2187,7 +2187,7 @@ pre code {
 .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #1abc9c;
+    border-color: #6975E9;
     outline: 0;
     box-shadow: 0 0 0 0rem rgba(26, 188, 156, 0.25);
 }
@@ -2712,18 +2712,18 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    /* background-color:#6A75E9; */
-    /* border-color:#6A75E9; */
-    background-color:  #1abc9c;
-    border-color:  #1abc9c;
+    background-color:#6A75E9;
+    border-color:#6A75E9;
+    /* background-color:  #1abc9c; */
+    /* border-color:  #1abc9c; */
 }
 
 .btn-primary:hover {
     color: #fff;
-    /* background-color: #5461d3; */
-    /* border-color: #5461d3; */
-    background-color: #148f77;
-    border-color:  #12846e;
+    background-color: #5461d3;
+    border-color: #5461d3;
+    /* background-color: #148f77; */
+    /* border-color:  #12846e; */
 }
 
 .btn-primary:focus, .btn-primary.focus {

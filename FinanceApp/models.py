@@ -66,3 +66,16 @@ class IncomeForm(ModelForm):
      class Meta:
           model = Income
           fields = "__all__"
+
+
+class Goals(models.Model):
+     user_id = models.ForeignKey(User_Register,on_delete=models.CASCADE)
+     Goal_name = models.CharField(max_length=200)
+     Target_amount = models.BigIntegerField()
+     Saved_amount = models.BigIntegerField()
+     Targe_date = models.DateField()
+
+class GoalsForm(ModelForm):
+     class Meta:
+          model = Goals
+          fields = "__all__"

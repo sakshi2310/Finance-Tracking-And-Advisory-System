@@ -37,6 +37,10 @@ urlpatterns = [
     path('FinanceApp/sidebar-header/',sidebar_header,name='sidebar_header'),
     path('FinanceApp/logout/',logout,name='logout'),
 
+    # Goals
+    path('FinanceApp/add-Goals/',Add_Goals,name='Add_Goals'),
+    path('FinanceApp/view-goals/',view_goals,name='view_Goal'),
+
 
     # path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),
     # path('AdminFinanceApp/Admin-Register/',admin_Register,name='Register'),

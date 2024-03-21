@@ -106,6 +106,31 @@ def sidebar_header(request):
     return render(request, "sidebar-header.html")
 
 
+def Add_Goals(request):
+    user_id = User_Register.objects.filter(id= request.session['user_id']).get()
+    print(user_id)
+    Goalsobj = GoalsForm()
+    if 'submit' in request.POST:
+        # Goalsobj = GoalsForm(request.POST)
+        name = request.POST['Goal_name']
+        target_amount = request.POST['Target_amount']
+        saved_amount = request.POST['Saved_amount']
+        date = request.POST['Targe_date']
+
+        obj = Goals(
+            user_id = user_id,
+            Goal_name = name,
+            Target_amount = target_amount,
+            Saved_amount = saved_amount,
+            Targe_date  = date
+        )
+        obj.save()
+        # Goalsobj.save()
+    return render(request,'Add_Goals.html',{'goalfrm':Goalsobj,'Users_id':user_id})
+
+def view_goals(request):
+    return render(request,'View_Goals.html')
+
 def logout(request):
     del request.session["user_id"]
     return redirect("/FinanceApp/Login")
