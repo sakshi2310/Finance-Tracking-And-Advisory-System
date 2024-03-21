@@ -1,12 +1,4 @@
-/**======================================================================
-=========================================================================
-Template Name: Able pro Bootstrap Admin Template
-Author: Phoenixcoded
-Support: support@phoenixcoded.net
-File: style.css
-=========================================================================
-=================================================================================== */
-/* cyrillic-ext */
+
 @import url(plugins/animate.min.css);
 
 @font-face {
@@ -18,7 +10,6 @@ File: style.css
   unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
-/* cyrillic */
 @font-face {
     font-family: 'Open Sans';
   font-style: normal;
@@ -10585,7 +10576,7 @@ a.text-dark:hover, a.text-dark:focus {
   h3 {
         page-break-after: avoid;
     }
-  @    page {
+  @page {
         size: a3;
     }
 
@@ -17308,7 +17299,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  @    font-face {
+  @font-face {
         font-family: "Flaticon";
         src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
     }
@@ -17326,7 +17317,7 @@ a.text-dark:hover, a.text-dark:focus {
     text-transform: none;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+    font-smooth: antialiased;
 }
 
 .flaticon-shield:before {
@@ -24355,7 +24346,7 @@ body.box-layout .pcoded-navbar.theme-horizontal ~ .pcoded-header {
 
 .fixed-button.active {
     bottom: 50px;
-    opacity: 1;
+    opacity: 0;
 }
 
 .social-card {

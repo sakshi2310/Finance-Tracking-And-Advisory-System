@@ -8,7 +8,6 @@ import random
 from django.core.mail import EmailMessage
 from django.contrib import messages 
 
-
 # Create your views here.
 def home(request):
     return render(request, "index.html")
@@ -16,17 +15,57 @@ def home(request):
 
 def signup(request):
     UserRegisterobj = User_RegisterForm()
-    if "Register" in request.POST:
-        UserRegisterobj = User_RegisterForm(request.POST)
-        UserRegisterobj.save()
-        return redirect("/FinanceApp/Dashboard")
+    duplicates = False
+    if "save" in request.POST:
+        email = request.POST['Email']
+        users = User_Register.objects.filter(Email=email)
+        if users.count() == 0:
+            UserRegisterobj = User_RegisterForm(request.POST)
+            UserRegisterobj.save()
+            request.session['register_id'] = User_Register.objects.last().id
+            return redirect("/FinanceApp/BasicInfo")
+        else : 
+            duplicates = True
 
-    # if 'Register_google' in
-    return render(request, "Signup.html", {"userfrm": UserRegisterobj})
+    # if 'Register_google' in   
+    return render(request, "Signup.html", {"duplicate":duplicates,"userfrm": UserRegisterobj})
+
+def basic_info(request):
+    if 'register_id' not in request.session:
+        return redirect('/FinanceApp/signup')
+    if 'save' in request.POST:
+        reg_id = request.session['register_id']
+        user = User_Register.objects.filter(id=reg_id).get()
+        cash = request.POST['cash']
+        card = request.POST['card']
+        saving = request.POST['saving']
+        obj = Personal_info(
+            user_id = user,
+            cash = cash,
+            card = card,
+            saving = saving
+        )
+        obj.save()
+        income = request.POST['income']
+        incometerm = request.POST['incometerm']
+        expance = request.POST['expance']
+        expanceterm = request.POST['incometerm']
+        obj = average(
+            user_id = user,
+            income=income,
+            incometerm=incometerm,
+            expance=expance,
+            expanceterm=expanceterm
+        )
+        obj.save()
+        request.session['user_id'] = request.session['register_id']
+        request.session['register_id'] = None
+        return redirect ('/FinanceApp/dashboard')
+    return render (request, "Basic_info.html")
 
 def login(request):
-    if "user_id" in request.session:
-        return redirect("/FinanceApp/dashboard")
+    # if "user_id" in request.session:
+    #     return redirect("/FinanceApp/dashboard")
     invalid_credentials = False
     if "login" in request.POST:
         Email = request.POST["Email"]
@@ -38,8 +77,6 @@ def login(request):
             row = obj.get()
             name = User_Register.objects.filter(Email=Email, Password=Password).get()
           
-            print(name)
-               # print(obj.Username)
                # send the mail
             subject = "Welcome to Money Mentor Hub - Confirm Your Registration"
             message = f"""<html>
@@ -97,9 +134,13 @@ def opt_verfication(request):
 def dashboard(request):
     return render(request, "dashboard.html")
 
+def addincome(request):
+
+    return render(request, "Add-income.html")
 
 def income(request):
-    return render(request, "Add-income.html")
+
+    return render(request, "income.html")
 
 
 def sidebar_header(request):

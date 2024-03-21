@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Wizard-v6</title>
@@ -8,35 +9,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
 	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/opensans-font.css'%}">
-	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
+	<link rel="stylesheet" type="text/css"
+		href="{% static 'User_panel/Login/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
 	<!-- datepicker -->
 	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/jquery-ui.min.css'%}">
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="{% static 'User_panel/Login/css/Login-style.css'%}"/>
-    <script>
-	document.addEventListener("DOMContentLoaded", function() {
-	    // Reset input fields when the page is loaded
-	    document.getElementById("form-register").reset();
-	});
- </script>
+	<link rel="stylesheet" href="{% static 'User_panel/Login/css/Login-style.css'%}" />
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// Reset input fields when the page is loaded
+			document.getElementById("form-register").reset();
+		});
+	</script>
 </head>
+
 <body>
 	<div class="page-content">
-		
+
 		<div class="wizard-v6-content">
-		
+
 			<div class="wizard-form">
-		        <form class="form-register" id="form-register" action="#" method="post">
-				{%csrf_token%}
-		        	<div id="form-total">
-		        		<!-- SECTION 1 -->
-					   <div class="wizard-heading">Money Mentor Hub</div>
-			            <!-- <h2></h2> -->
-					  
-					  
-			            <section>
-			                <div class="inner">
-								{% if invalid_credentials %}			                	
+				<form class="form-register" id="form-register" method="post">
+					{%csrf_token%}
+					<div id="form-total">
+						<!-- SECTION 1 -->
+						<div class="wizard-heading">Money Mentor Hub</div>
+						<!-- <h2></h2> -->
+
+
+						<section>
+							<div class="inner">
+								{% if invalid_credentials %}
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner" style="border-color: red;">
@@ -44,18 +47,17 @@
 											<span class="label" style="color: red;">Invalid Email</span>
 										</label>
 									</div>
-									
-								</div> 
+								</div>
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner" style="border-color: red;">
-											<input type="text" class="form-control" id="Password" name="Password"  style="color: red;"required>
+											<input type="text" class="form-control" id="Password" name="Password"
+												style="color: red;" required>
 											<span class="label" style="color: red;">Invalid Password</span>
 										</label>
 									</div>
-								
 								</div>
-								
+
 								<!-- <p style="color: red;">Invalid email or password. Please try again.</p> -->
 								{% else %}
 								<div class="form-row">
@@ -65,31 +67,34 @@
 											<span class="label">Email</span>
 										</label>
 									</div>
-									
-								</div> 
+								</div>
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner">
-											<input type="text" class="form-control" id="Password" name="Password" required>
+											<input type="text" class="form-control" id="Password" name="Password"
+												required>
 											<span class="label">Password</span>
 										</label>
 									</div>
-								
 								</div>
 								{% endif %}
 								<div class="form-row">
 									<div class="confirm-button">
 										<!-- <p id="error-message" style="display: none; color: red;"></p> -->
-										<button type="submit" class="btn-primary"  name="login">Confirm</button>
-									 </div>
+										<button type="submit" class="btn-primary" name="login">Confirm</button>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder">
+										<label class="form-row-inner">
+											<span class="label" style="width: 270px;">Don’t have an account?<a href="/FinanceApp/signup" style="color: #FFF;"><b> Signup </b></a></span>
+										</label>
+									</div>
 								</div>
 							</div>
-						
-			            </section>
-					  
-                          
-		        	</div>
-		        </form>
+						</section>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -99,4 +104,5 @@
 	<!-- <script src="{% static 'User_panel/Login/js/main.js'%}"></script> -->
 	<script src="{% static 'User_panel/Login/js/login.js'%}"></script>
 </body>
+
 </html>
