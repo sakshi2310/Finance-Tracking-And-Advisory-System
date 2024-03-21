@@ -2675,6 +2675,17 @@ textarea.form-control {
     border-radius: 2px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.First_row
+{
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 10px;
+}
+.btn-my
+     {
+          width: 150px;
+          height: 40px;
+     }
 
 @media (prefers-reduced-motion: reduce) {
     .btn {
