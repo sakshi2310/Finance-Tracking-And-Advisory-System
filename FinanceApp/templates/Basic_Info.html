@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Wizard-v6</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/opensans-font.css'%}">
+	<link rel="stylesheet" type="text/css"
+		href="{% static 'User_panel/Login/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css'%}">
+	<!-- datepicker -->
+	<link rel="stylesheet" type="text/css" href="{% static 'User_panel/Login/css/jquery-ui.min.css'%}">
+	<!-- Main Style Css -->
+	<link rel="stylesheet" href="{% static 'User_panel/Login/css/style.css'%}" />
+</head>
+
+<body>
+	<div class="page-content">
+		<div class="wizard-heading">Money Mentor Hub</div>
+		<div class="wizard-v6-content">
+			<div class="wizard-form">
+				<form class="form-register" id="form-register" method="post">
+					{% csrf_token %}
+					<div id="form-total">
+						<!-- SECTION 1 -->
+						<h2>
+							<p class="step-icon"><span>1</span></p>
+							<span class="step-text">Personal Info</span>
+						</h2>
+						<section>
+							<div class="inner">
+								<div class="form-heading">
+									<h3>Personal Info</h3>
+									<span>1/3</span>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="address" name="cash" required>
+											<span class="label">Cash</span>
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="address" name="card" required>
+											<span class="label">Card</span>
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="address" name="saving" required>
+											<span class="label">Savings</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- SECTION 2 -->
+						<h2>
+							<p class="step-icon"><span>2</span></p>
+							<span class="step-text">Income</span>
+						</h2>
+						<section>
+							<div class="inner">
+								<div class="form-heading">
+									<h3>Income Infomation</h3>
+									<span>2/3</span>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="address" name="income" required>
+											<span class="label">Income</span>
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label for="room" class="special-label-1">Income Term </label>
+										<select name="incometerm" id="room" class="form-control">
+											<option value="daily">daily</option>
+											<option value="weekly">weekly</option>
+											<option value="half_monthly">Half Monthly</option>
+											<option value="monthly">monthly</option>
+											<option value="anually">annually</option>
+										</select>
+										<span class="select-btn">
+											<i class="zmdi zmdi-chevron-down"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- SECTION 3 -->
+						<h2>
+							<p class="step-icon"><span>3</span></p>
+							<span class="step-text">Expance</span>
+						</h2>
+						<section>
+							<div class="inner">
+								<div class="form-heading">
+									<h3>Expance Infomation</h3>
+									<span>2/3</span>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label class="form-row-inner">
+											<input type="text" class="form-control" id="address" name="expance" required>
+											<span class="label">Expance</span>
+										</label>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label for="room" class="special-label-1">Expance Term </label>
+										<select name="expanceterm" id="room" class="form-control">
+											<option value="daily">daily</option>
+											<option value="weekly">weekly</option>
+											<option value="half_monthly">Half Monthly</option>
+											<option value="monthly">monthly</option>
+											<option value="anually">annually</option>
+										</select>
+										<span class="select-btn">
+											<i class="zmdi zmdi-chevron-down"></i>
+										</span>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="confirm-button">
+										<button type="submit" class="btn-primary" name="save"
+											value="save">Submit</button>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'User_panel/Login/js/jquery-3.3.1.min.js'%}"></script>
+	<script src="{% static 'User_panel/Login/js/jquery.steps.js'%}"></script>
+	<script src="{% static 'User_panel/Login/js/jquery-ui.min.js'%}"></script>
+	<script src="{% static 'User_panel/Login/js/main.js'%}"></script>
+</body>
+
+</html>

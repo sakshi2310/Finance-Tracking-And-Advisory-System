@@ -28,9 +28,9 @@ class Personal_InfoForm(ModelForm):
 
 class average(models.Model):
      user_id = models.ForeignKey(User_Register,on_delete=models.CASCADE)
-     income = models.CharField(max_length=100,default="")
+     income = models.BigIntegerField(default=0)
      incometerm = models.CharField(max_length=100,default="")
-     expance = models.CharField(max_length=100,default="")
+     expance = models.BigIntegerField(default=0)
      expanceterm = models.CharField(max_length=100,default="")
 
 class budgetForm(ModelForm):
@@ -42,7 +42,7 @@ class budgetForm(ModelForm):
 class Expance(models.Model):
      user_id = models.ForeignKey(User_Register,on_delete=models.CASCADE)
      amount_type = models.CharField(max_length=100,default="")
-     amount = models.CharField(max_length=100,default="")
+     amount = models.BigIntegerField(default=0)
      amount_sourse = models.ForeignKey(Incomesource,on_delete=models.CASCADE)
      date = models.DateTimeField()
      amount_status = models.CharField(max_length=100,default="")

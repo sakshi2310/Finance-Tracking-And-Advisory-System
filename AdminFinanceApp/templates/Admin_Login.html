@@ -1,25 +1,16 @@
 {% load static%}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 	<title>Login - MoneyMentorHub</title>
-	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 11]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="">
 	<meta name="author" content="Phoenixcoded" />
-	<!-- Favicon icon -->
 	<link rel="icon" href="{% static 'User_panel/assets/images/favicon.ico'%}" type="image/x-icon">
+<<<<<<< HEAD
 
 	<!-- vendor css -->
 	<link rel="stylesheet" href="{% static 'User_panel/assets/css/admin-login.css'%}">
@@ -27,9 +18,10 @@
 
 
 
+=======
+	<link rel="stylesheet" href="{% static 'User_panel/assets/css/style.css'%}">
+>>>>>>> 97bd7d71f98e7b72a58996e35b1b866eaf5aec6d
 </head>
-
-<!-- [ auth-signin ] start -->
 <div class="auth-wrapper">
 	<div class="auth-content text-center">
 		<img src="assets/images/logo.png" alt="" class="img-fluid mb-4">
@@ -49,10 +41,6 @@
 								<input type="password" class="form-control" id="Password" placeholder="Password"
 									name="password">
 							</div>
-							<div class="custom-control custom-checkbox text-left mb-4 mt-2">
-								<input type="checkbox" class="custom-control-input" id="customCheck1">
-								<label class="custom-control-label" for="customCheck1">Save credentials.</label>
-							</div>
 							<button class="btn btn-block btn-primary mb-4" type="submit" name="save" value="save">Signin</button>
 						</form>
 						<hr>
@@ -66,16 +54,8 @@
 		</div>
 	</div>
 </div>
-<!-- [ auth-signin ] end -->
-
-<!-- Required Js -->
 <script src="{% static 'User_panel/assets/js/vendor-all.min.js'%}"></script>
 <script src="{% static 'User_panel/assets/js/plugins/bootstrap.min.js'%}"></script>
-
 <script src="{% static 'User_panel/assets/js/pcoded.min.js'%}"></script>
-
-
-
 </body>
-
 </html>

@@ -29,22 +29,17 @@ urlpatterns = [
     path('',home,name='home'),
     path('FinanceApp/',home,name='home'),
     path('FinanceApp/signup/',signup,name='signup'),
+    path('FinanceApp/BasicInfo/',basic_info,name='BasicInfo'),
     path('FinanceApp/Login/',login,name='login'),
-    path('Login', RedirectView.as_view(url='/Login/', permanent=True)),
     path('FinanceApp/dashboard/',dashboard,name='dashboard'),
     path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
     path('FinanceApp/income/',income,name='income'),
-    path('FinanceApp/sidebar-header/',sidebar_header,name='sidebar_header'),
     path('FinanceApp/logout/',logout,name='logout'),
 
     # Goals
     path('FinanceApp/add-Goals/',Add_Goals,name='Add_Goals'),
     path('FinanceApp/view-goals/',view_goals,name='view_Goal'),
 
-
-    # path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),
-    # path('AdminFinanceApp/Admin-Register/',admin_Register,name='Register'),
-    # path('AdminFinanceApp/Admin-Dashboard/',admin_Dashboard,name='Dashboard'),
 
     path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),
     path('AdminFinanceApp/Admin-Register/',admin_Register,name='Register'),
