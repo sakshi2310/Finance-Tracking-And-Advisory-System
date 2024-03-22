@@ -1,141 +1,103 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
-    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 11]>
+     <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+     <!--[if lt IE 11]>
     	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     	<![endif]-->
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="">
-    <meta name="author" content="Phoenixcoded" />
-    <!-- Favicon icon -->
-    <link rel="icon" href="{% static 'User_panel/assets/images/favicon.ico'%}" type="image/x-icon">
+     <!-- Meta -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="description" content="" />
+     <meta name="keywords" content="">
+     <meta name="author" content="Phoenixcoded" />
+     <!-- Favicon icon -->
+     <link rel="icon" href="{% static 'User_panel/assets/images/favicon.ico'%}" type="image/x-icon">
 
-    <!-- vendor css -->
-    <link rel="stylesheet" href="{% static 'User_panel/assets/css/style.css'%}">
-    <style>
+     <!-- vendor css -->
+     <link rel="stylesheet" href="{% static 'User_panel/assets/css/style.css'%}">
+     <style>
+          h1 {
+               font-size: 2rem;
+               margin-bottom: 1rem;
+          }
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
+          
+         
+     </style>
+</head>
 
-.goal-progress {
-    width: 100%;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.goal-name {
-    font-size: 1.2rem;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.progress {
-    height: 100%;
-    background-color: #007bff;
-    border-radius: 5px;
-}
-
-.goal-amount {
-    font-size: 1.1rem;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0069d9;
-}
-
-    </style>
-    
-    <body class="">
-     <!-- {% include 'sidebar-header.html'%} -->
-	
-	<!-- [ Pre-loader ] start -->
-	<div class="loader-bg">
-		<div class="loader-track">
-			<div class="loader-fill"></div>
-		</div>
-	</div>
-	{% include 'sidebar-header.html'%}
+<body class="">
+     <div class="loader-bg">
+          <div class="loader-track">
+               <div class="loader-fill"></div>
+          </div>
+     </div>
+     {% include 'sidebar-header.html'%}
 
      <div class="pcoded-main-container">
           <div class="pcoded-content">
-               <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savings Goal Tracker</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>Goals</h1>
-    <div class="goal-progress">
-        <div class="goal-name">New vehicle</div>
-        <div class="progress-bar">
-            <div class="progress" style="width: 31%"></div>
-        </div>
-        <div class="goal-amount">₹25,000</div>
-    </div>
-    <!-- <button>CREATE GOAL</button> -->
-    <div class="goal-progress">
-     <div class="goal-name">New vehicle</div>
-     <div class="progress-bar">
-         <div class="progress" style="width: 31%"></div>
+               <div class="First_row">
+                    <div class="page-header-title">
+                         <h2 class="m-b-10">Goals</h2>
+                    </div>
+                    <button type="button" class="btn  btn-primary btn-sm btn-my">Create Goal</button>
+               </div>
+               {% load mathfilters %}
+               {% for row in all_goals%}
+               <div class="goal-progress">
+                    <div class="goal-first">
+                         
+                         <div class="goal-name-main">
+                              <div class="goal-name" >{{row.Goal_name}}</div>
+                              <!-- <div class="goal-amount saved-amount" id="SavedAmount">{{ row.Saved_amount }}</div>
+                              <div class="goal-amount target-amount" id="targetAmount">{{ row.Target_amount }}</div> -->
+                              <div class="goal-amount" id="savedAmount_{{ row.id }}" data-saved="{{ row.Saved_amount }}">{{ row.Saved_amount }}</div>
+                              <div class="goal-amount" id="targetAmount_{{ row.id }}" data-target="{{ row.Target_amount }}">{{ row.Target_amount }}</div>
+                         </div>
+                         <div class="goal_per-main">
+                              <div class="per">
+                                   {{per}}%
+                              </div>
+                              <div class="btn">
+                                   <a href="/FinanceApp/single-goal/{{row.id}}">
+                                 <button class="btn-single">
+                                   <i class="feather-log-out"></i>
+                                   View
+                              </button>
+                         </a>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="progress-bar">
+                         <div class="progress" style="width: 0%"></div>
+                     </div>
+               </div>
+               {% endfor%}
+          </div>
+           
+          </div>
      </div>
-     <div class="goal-amount">31%</div>
- </div>
-    <script src="script.js"></script>
-</body>
-</html>
-
-           </div>
-      </div>
-      
 
 
-  
+     <!-- Required Js -->
+     <script src="{% static 'User_panel/assets/js/vendor-all.min.js'%}"></script>
+     <script src="{% static 'User_panel/assets/js/plugins/bootstrap.min.js'%}"></script>
+     <script src="{% static 'User_panel/assets/js/pcoded.min.js'%}"></script>
 
-    <!-- Required Js -->
-    <script src="{% static 'User_panel/assets/js/vendor-all.min.js'%}"></script>
-    <script src="{% static 'User_panel/assets/js/plugins/bootstrap.min.js'%}"></script>
-    <script src="{% static 'User_panel/assets/js/pcoded.min.js'%}"></script>
-
-<!-- Apex Chart -->
-<script src="{% static 'User_panel/assets/js/plugins/apexcharts.min.js'%}"></script>
+     <!-- Apex Chart -->
+     <script src="{% static 'User_panel/assets/js/plugins/apexcharts.min.js'%}"></script>
 
 
-<!-- custom-chart js -->
-<script src="{% static 'User_panel/assets/js/pages/dashboard-main.js'%}"></script>
+     <!-- custom-chart js -->
+     <script src="{% static 'User_panel/assets/js/pages/dashboard-main.js'%}"></script>
+     <script src="{% static 'User_panel/assets/js/pages/goal_progress.js' %}"></script>
 </body>
 
 

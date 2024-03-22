@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 import random
 from django.core.mail import EmailMessage
 from django.contrib import messages 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 def home(request):
@@ -192,12 +194,37 @@ def Add_Goals(request):
             Targe_date  = date
         )
         obj.save()
+        return redirect("/FinanceApp/view-goals")
         # Goalsobj.save()
     return render(request,'Add_Goals.html',{'goalfrm':Goalsobj,'Users_id':user_id})
 
 def view_goals(request):
-    return render(request,'View_Goals.html')
+    per = 0
+    all_goals = Goals.objects.all()
+    record_count = Goals.objects.count()
+    if record_count > 0:
+        for row in all_goals:
+            saved_amount = row.Saved_amount
+            target_amount = row.Target_amount
+            per =round(( saved_amount / target_amount )*100)
+    return render(request,'View_Goals.html',{'all_goals':all_goals,'per':per})
+
+cnt = 0
+def single_goal(request,single_goal_id):
+    global cnt
+    goals = Goals.objects.filter(id=single_goal_id).get()
+    if request.method == 'POST':
+        if 'Edit_amount' in request.POST:
+            cnt += 1
+            saved = int(request.POST['Saved_amount'])
+            goals.Saved_amount += saved
+            goals.save()
+            return HttpResponseRedirect(reverse('your_url_name'))
+    return render(request,'Single-Goal.html',{'goals':goals})
 
 def logout(request):
     del request.session["user_id"]
     return redirect("/FinanceApp/Login")
+
+def demo(request):
+    return render(request,'demo.html')

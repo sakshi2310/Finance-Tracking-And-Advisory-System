@@ -67,7 +67,6 @@ class IncomeForm(ModelForm):
           model = Income
           fields = "__all__"
 
-
 class Goals(models.Model):
      user_id = models.ForeignKey(User_Register,on_delete=models.CASCADE)
      Goal_name = models.CharField(max_length=200)

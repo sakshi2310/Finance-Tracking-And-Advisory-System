@@ -2675,6 +2675,17 @@ textarea.form-control {
     border-radius: 2px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.First_row
+{
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 10px;
+}
+.btn-my
+     {
+          width: 150px;
+          height: 40px;
+     }
 
 @media (prefers-reduced-motion: reduce) {
     .btn {
@@ -30186,6 +30197,70 @@ new-task label input[type=checkbox] {
 .user-profile-list table tr td:last-child {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
+}
+
+/* goal css */
+
+.goal-progress {
+    width: 100%;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+.goal-name-main
+{
+    margin-bottom: 10px;
+}
+
+.goal-name {
+    font-size: 1.2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #18a589;
+    border-radius: 5px;
+}
+
+.goal-amount {
+    font-size: 0.9rem;
+}
+
+.btn-single {
+    background-color:#1ABC9C;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+}
+.goal-first
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-single:hover {
+    background-color: #18a589;
+}
+.goal_per-main
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /**====== user card css end ======**/
