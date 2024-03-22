@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+     <!--[if lt IE 11]>
+    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+     <!-- Meta -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+     <meta name="description" content="" />
+     <meta name="keywords" content="">
+     <meta name="author" content="Phoenixcoded" />
+     <!-- Favicon icon -->
+     <link rel="icon" href="{% static 'User_panel/assets/images/favicon.ico'%}" type="image/x-icon">
+
+     <!-- vendor css -->
+     <link rel="stylesheet" href="{% static 'User_panel/assets/css/style.css'%}">
+     <style type="text/css">
+          .progress-container {
+               position: relative;
+               width: 250px;
+               height: 250px;
+               /* background-color: aqua; */
+          }
+
+          .progress-svg {
+               width: 100%;
+               height: 100%;
+          }
+
+          .progress-background {
+               fill: none;
+               stroke: #ddd;
+               stroke-width: 8;
+          }
+
+          .progress {
+               fill: none;
+               stroke: #4caf50;
+               stroke-width: 8;
+               stroke-dasharray: 0;
+               transition: stroke-dasharray 0.5s ease;
+               transform: rotate(-90deg);
+               transform-origin: 50% 50%;
+          }
+
+          .progress-text {
+               font-family: Arial, sans-serif;
+               font-size: 12px;
+               text-anchor: middle;
+          }
+
+          .chart {
+               display: flex;
+               justify-content: center;
+          }
+
+          .main_first_row {
+               display: flex;
+               justify-content: center;
+          }
+
+          .chart-content {
+               display: flex;
+               justify-content: left;
+               align-items: center;
+          }
+
+          .form-contain {
+               display: block;
+               padding: 0 15px;
+               padding-bottom: 10px;
+          }
+     </style>
+
+</head>
+
+<body class="">
+     <div class="loader-bg">
+          <div class="loader-track">
+               <div class="loader-fill"></div>
+          </div>
+     </div>
+     {% include 'sidebar-header.html'%}
+
+     <div class="pcoded-main-container">
+          <div class="pcoded-content">
+               <div class="First_row">
+                    <div class="page-header-title">
+                         <h2 class="m-b-10">Goal</h2>
+                    </div>
+                    <button type="button" class="btn  btn-primary btn-sm btn-my">Create Goal</button>
+               </div>
+               <div class="main_first_row ">
+                    <div class="col-md-6 goal-progress">
+                         <div class="card">
+                              <div class="card-header">
+                                   <h5>Pie Charts</h5>
+                              </div>
+                              <div class="card-body chart">
+                                   <div class="progress-container">
+                                        <svg class="progress-svg" viewBox="0 0 100 100">
+                                             <circle class="progress-background" cx="50" cy="50" r="40"></circle>
+                                             <circle class="progress" cx="50" cy="50" r="40"></circle>
+                                             <text class="progress-text" x="50" y="55">0%</text>
+                                        </svg>
+                                   </div>
+                              </div>
+                              <div class="card-header">
+                                   <h5 class="goal-amount" id="targetAmount_{{ goals.id }}" data-target="{{ goals.Target_amount }}">{{ goals.Target_amount }}</h5>
+                                   <h5 class="goal-amount" id="savedAmount_{{ goals.id }}" data-saved="{{goals.Saved_amount }}"><strong>{{goals.Saved_amount}}</strong> </h5>
+                              </div>
+                         </div>
+
+                    </div>
+                    <div class="col-md-6">
+                         <div class="card">
+                              <div class="card-header">
+                                   <h5>{{goals.Goal_name}}</h5>
+                              </div>
+                              <div class="card-body">
+                                   <div class="form-group mb-2 chart-content">
+                                        <div style="padding-right: 8px;">Last Added Amount : </div>
+                                        <div class="goal-amount" id="savedAmount_{{ row.id }}" data-saved="{{ row.Saved_amount }}"><strong>{{goals.Saved_amount}}</strong> </div>
+                                   </div>
+                                   <div class="form-group mb-2 chart-content">
+                                        <div style="padding-right: 8px;">Estimated Time to Reach Goal: </div>
+                                        <div><strong>2 week</strong></div>
+                                   </div>
+                              </div>
+                              <button type="button" class="btn  btn-primary" id="showFormBtn"
+                                   style="padding-top: 10px;">Add Saved Amount</button>
+                              <div id="formContainer" style="display: none;" class="form-contain">
+                                   <h5 class="mt-5">Add Saved Amount</h5>
+                                   <hr>
+                                   <form class="form-inline" id="myForm" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group mb-2">
+                                             <label for="staticEmail2" class="form-control-plaintext">Amount</label>
+                                        </div>
+                                        <div class="form-group mx-sm-3 mb-2">
+                                             <label for="inputPassword2" class="sr-only">Password</label>
+                                             <input type="text" class="form-control" id="inputPassword2"
+                                                  placeholder="Amount" name="Saved_amount" value="0">
+                                        </div>
+                                        <button type="submit" class="btn  btn-primary mb-2" name="Edit_amount"
+                                             value="Edit_amount" id="Amount-confirm">Confirm</button>
+                                   </form>
+                              </div>
+                         </div>
+
+                    </div>
+
+               </div>
+
+               <button onclick="increaseProgress()">Increase Progress</button>
+
+               <!-- increase saved amount  -->
+
+
+          </div>
+     </div>
+
+
+     <!-- Required Js -->
+     <script src="{% static 'User_panel/assets/js/vendor-all.min.js'%}"></script>
+     <script src="{% static 'User_panel/assets/js/plugins/bootstrap.min.js'%}"></script>
+     <script src="{% static 'User_panel/assets/js/pcoded.min.js'%}"></script>
+
+     <!-- Apex Chart -->
+     <script src="{% static 'User_panel/assets/js/plugins/apexcharts.min.js'%}"></script>
+
+
+     <!-- custom-chart js -->
+     <script src="{% static 'User_panel/assets/js/pages/dashboard-main.js'%}"></script>
+     <script>
+          // Get the button and form elements
+          var showFormBtn = document.getElementById('showFormBtn');
+          var formContainer = document.getElementById('formContainer');
+
+          // Add event listener to the button
+          showFormBtn.addEventListener('click', function () {
+               // Toggle the display of the form container
+               if (formContainer.style.display === 'none') {
+                    formContainer.style.display = 'block';
+               } else {
+                    formContainer.style.display = 'none';
+               }
+          });
+          progressContainers.forEach(progressContainer => {
+        // Get saved amount and target amount
+        const savedAmountElement = progressContainer.querySelector('.goal-amount[data-saved]');
+        const savedAmount = parseFloat(savedAmountElement.dataset.saved);
+        
+        const targetAmountElement = progressContainer.querySelector('.goal-amount[data-target]');
+        const targetAmount = parseFloat(targetAmountElement.dataset.target);
+        
+        // Calculate progress percentage
+        const progress = (savedAmount / targetAmount) * 100;
+
+        // Get progress elements
+        const progressCircle = progressContainer.querySelector('.progress');
+        const circumference = progressCircle.getTotalLength();
+        const offset = circumference - (progress / 100) * circumference;
+
+        // Update progress circle with percentage value
+        progressCircle.style.strokeDasharray = `${circumference}`;
+        progressCircle.style.strokeDashoffset = `${offset}`;
+    });
+
+          // let progress = 0;
+          // const progressBar = document.querySelector('.progress');
+          // const progressText = document.querySelector('.progress-text');
+          // const circumference = 2 * Math.PI * 40; // Circumference of circle with radius 40
+
+          // // Set initial state to hide the progress bar
+          // progressBar.style.strokeDasharray = `${circumference} ${circumference}`;
+          // progressBar.style.strokeDashoffset = circumference;
+
+          // function increaseProgress() {
+          //      progress += 10;
+          //      if (progress > 100) {
+          //           progress = 100;
+          //      }
+          //      const dashOffset = circumference - (progress / 100) * circumference;
+          //      progressBar.style.strokeDashoffset = dashOffset;
+          //      progressText.textContent = `${progress}%`;
+          // }
+
+
+
+
+     </script>
+
+</body>
+
+
+</head>
+
+</html>

@@ -39,6 +39,10 @@ urlpatterns = [
     # Goals
     path('FinanceApp/add-Goals/',Add_Goals,name='Add_Goals'),
     path('FinanceApp/view-goals/',view_goals,name='view_Goal'),
+    path('FinanceApp/single-goal/<int:single_goal_id>',single_goal,name="single_goal"),
+
+    # demo
+    path('FinanceApp/demo/',demo,name='demo'),
 
 
     path('AdminFinanceApp/Admin-Login/',admin_Login,name='Login'),

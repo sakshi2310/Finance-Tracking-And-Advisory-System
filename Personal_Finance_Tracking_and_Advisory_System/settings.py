@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'FinanceApp',
     'AdminFinanceApp',
+    'mathfilters',
 
     # all auth configurations
     'django.contrib.sites',
