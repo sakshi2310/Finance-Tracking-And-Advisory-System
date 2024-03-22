@@ -34,6 +34,9 @@ urlpatterns = [
     path('FinanceApp/dashboard/',dashboard,name='dashboard'),
     path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
     path('FinanceApp/income/',income,name='income'),
+    # path('FinanceApp/add-income/',addincome,name='income'),
+    # path('FinanceApp/edit-income/<int:edit_id>',edit_income,name='income'),
+    # path('FinanceApp/del-income/<int:del_id>',del_income,name='income'),
     path('FinanceApp/logout/',logout,name='logout'),
 
     # Goals
