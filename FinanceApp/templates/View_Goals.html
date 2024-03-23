@@ -47,7 +47,7 @@
                     <div class="page-header-title">
                          <h2 class="m-b-10">Goals</h2>
                     </div>
-                    <button type="button" class="btn  btn-primary btn-sm btn-my">Create Goal</button>
+                    <a href="/FinanceApp/add-Goals/"><button type="button" class="btn  btn-primary btn-sm btn-my">Create Goal</button></a>
                </div>
                {% load mathfilters %}
                {% for row in all_goals%}
@@ -63,7 +63,7 @@
                          </div>
                          <div class="goal_per-main">
                               <div class="per">
-                                   {{per}}%
+                                   {{row.per}}%
                               </div>
                               <div class="btn">
                                    <a href="/FinanceApp/single-goal/{{row.id}}">

@@ -35,26 +35,32 @@
                height: 100%;
           }
 
+
           .progress-background {
                fill: none;
-               stroke: #ddd;
+               stroke: #e9ecef;
+               /* Change color as needed */
                stroke-width: 8;
+               /* Adjust thickness as needed */
           }
 
           .progress {
-               fill: none;
-               stroke: #4caf50;
+               fill: transparent;
+               stroke: #007bff;
+               /* Change color as needed */
                stroke-width: 8;
-               stroke-dasharray: 0;
-               transition: stroke-dasharray 0.5s ease;
-               transform: rotate(-90deg);
-               transform-origin: 50% 50%;
+               /* Adjust thickness as needed */
+               stroke-dasharray: 0, 283;
+               /* Initial dash array */
+               transition: stroke-dasharray 0.5s ease-in-out;
+               /* Smooth animation */
           }
 
           .progress-text {
                font-family: Arial, sans-serif;
                font-size: 12px;
                text-anchor: middle;
+               fill: #000;
           }
 
           .chart {
@@ -76,7 +82,6 @@
           .form-contain {
                display: block;
                padding: 0 15px;
-               padding-bottom: 10px;
           }
      </style>
 
@@ -96,10 +101,10 @@
                     <div class="page-header-title">
                          <h2 class="m-b-10">Goal</h2>
                     </div>
-                    <button type="button" class="btn  btn-primary btn-sm btn-my">Create Goal</button>
+                    <a href="/FinanceApp/add-Goals/"><button type="button" class="btn  btn-primary btn-sm btn-my">Create Goal</button></a>
                </div>
                <div class="main_first_row ">
-                    <div class="col-md-6 goal-progress">
+                    <div class="col-md-6 goal-progress-1">
                          <div class="card">
                               <div class="card-header">
                                    <h5>Pie Charts</h5>
@@ -109,17 +114,13 @@
                                         <svg class="progress-svg" viewBox="0 0 100 100">
                                              <circle class="progress-background" cx="50" cy="50" r="40"></circle>
                                              <circle class="progress" cx="50" cy="50" r="40"></circle>
-                                             <text class="progress-text" x="50" y="55">0%</text>
+                                             <text class="progress-text" x="50" y="55" id="progess-per">{{goals.per}}%</text>
                                         </svg>
                                    </div>
                               </div>
-                              <div class="card-header">
-                                   <h5 class="goal-amount" id="targetAmount_{{ goals.id }}" data-target="{{ goals.Target_amount }}">{{ goals.Target_amount }}</h5>
-                                   <h5 class="goal-amount" id="savedAmount_{{ goals.id }}" data-saved="{{goals.Saved_amount }}"><strong>{{goals.Saved_amount}}</strong> </h5>
-                              </div>
                          </div>
-
                     </div>
+
                     <div class="col-md-6">
                          <div class="card">
                               <div class="card-header">
@@ -128,7 +129,9 @@
                               <div class="card-body">
                                    <div class="form-group mb-2 chart-content">
                                         <div style="padding-right: 8px;">Last Added Amount : </div>
-                                        <div class="goal-amount" id="savedAmount_{{ row.id }}" data-saved="{{ row.Saved_amount }}"><strong>{{goals.Saved_amount}}</strong> </div>
+                                        <div class="goal-amount" id="savedAmount_{{ row.id }}"
+                                             data-saved="{{ row.Saved_amount }}"><strong>{{goals.Saved_amount}}</strong>
+                                        </div>
                                    </div>
                                    <div class="form-group mb-2 chart-content">
                                         <div style="padding-right: 8px;">Estimated Time to Reach Goal: </div>
@@ -137,10 +140,10 @@
                               </div>
                               <button type="button" class="btn  btn-primary" id="showFormBtn"
                                    style="padding-top: 10px;">Add Saved Amount</button>
-                              <div id="formContainer" style="display: none;" class="form-contain">
+                              <div id="formContainer" style="display: none;" class="form-contain" >
                                    <h5 class="mt-5">Add Saved Amount</h5>
                                    <hr>
-                                   <form class="form-inline" id="myForm" method="post">
+                                   <form class="form-inline" id="myForm" method="post" action="/FinanceApp/single-goal/{{ goals.id }}/">
                                         {% csrf_token %}
                                         <div class="form-group mb-2">
                                              <label for="staticEmail2" class="form-control-plaintext">Amount</label>
@@ -154,13 +157,14 @@
                                              value="Edit_amount" id="Amount-confirm">Confirm</button>
                                    </form>
                               </div>
+                             
+
                          </div>
 
                     </div>
 
                </div>
 
-               <button onclick="increaseProgress()">Increase Progress</button>
 
                <!-- increase saved amount  -->
 
@@ -180,6 +184,7 @@
 
      <!-- custom-chart js -->
      <script src="{% static 'User_panel/assets/js/pages/dashboard-main.js'%}"></script>
+
      <script>
           // Get the button and form elements
           var showFormBtn = document.getElementById('showFormBtn');
@@ -194,26 +199,22 @@
                     formContainer.style.display = 'none';
                }
           });
-          progressContainers.forEach(progressContainer => {
-        // Get saved amount and target amount
-        const savedAmountElement = progressContainer.querySelector('.goal-amount[data-saved]');
-        const savedAmount = parseFloat(savedAmountElement.dataset.saved);
-        
-        const targetAmountElement = progressContainer.querySelector('.goal-amount[data-target]');
-        const targetAmount = parseFloat(targetAmountElement.dataset.target);
-        
-        // Calculate progress percentage
-        const progress = (savedAmount / targetAmount) * 100;
+          document.addEventListener("DOMContentLoaded", function() {
+    // Get the percentage value from the HTML
+    var progressPerElement = document.getElementById("progess-per");
+    var progressPercentage = parseFloat(progressPerElement.textContent); // Extract the percentage value
+    
+    // Calculate the stroke-dasharray and stroke-dashoffset based on the percentage
+    var progressCircle = document.querySelector(".progress");
+    var radius = parseFloat(progressCircle.getAttribute("r"));
+    var circumference = 2 * Math.PI * radius;
+    var progressOffset = circumference * (1 - (progressPercentage / 100));
+    
+    // Apply the calculated values to the progress bar
+    progressCircle.style.strokeDasharray = circumference;
+    progressCircle.style.strokeDashoffset = progressOffset;
+});
 
-        // Get progress elements
-        const progressCircle = progressContainer.querySelector('.progress');
-        const circumference = progressCircle.getTotalLength();
-        const offset = circumference - (progress / 100) * circumference;
-
-        // Update progress circle with percentage value
-        progressCircle.style.strokeDasharray = `${circumference}`;
-        progressCircle.style.strokeDashoffset = `${offset}`;
-    });
 
           // let progress = 0;
           // const progressBar = document.querySelector('.progress');

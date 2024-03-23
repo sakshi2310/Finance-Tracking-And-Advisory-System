@@ -66,8 +66,8 @@ def basic_info(request):
     return render (request, "Basic_info.html")
 
 def login(request):
-    # if "user_id" in request.session:
-    #     return redirect("/FinanceApp/dashboard")
+    if "user_id" in request.session:
+        return redirect("/FinanceApp/dashboard")
     invalid_credentials = False
     if "login" in request.POST:
         Email = request.POST["Email"]
@@ -159,13 +159,17 @@ def Add_Goals(request):
         target_amount = request.POST['Target_amount']
         saved_amount = request.POST['Saved_amount']
         date = request.POST['Targe_date']
-
+        if int(saved_amount)==0:
+            per = 0
+        else:
+            per =   int((int(saved_amount) / int(target_amount) ) * 100)
         obj = Goals(
             user_id = user_id,
             Goal_name = name,
             Target_amount = target_amount,
             Saved_amount = saved_amount,
-            Targe_date  = date
+            Targe_date  = date,
+            per = per
         )
         obj.save()
         return redirect("/FinanceApp/view-goals")
@@ -183,18 +187,17 @@ def view_goals(request):
             per =round(( saved_amount / target_amount )*100)
     return render(request,'View_Goals.html',{'all_goals':all_goals,'per':per})
 
-cnt = 0
 def single_goal(request,single_goal_id):
-    global cnt
-    goals = Goals.objects.filter(id=single_goal_id).get()
+    goal = Goals.objects.get(id=single_goal_id)
     if request.method == 'POST':
-        if 'Edit_amount' in request.POST:
-            cnt += 1
-            saved = int(request.POST['Saved_amount'])
-            goals.Saved_amount += saved
-            goals.save()
-            return HttpResponseRedirect(reverse('your_url_name'))
-    return render(request,'Single-Goal.html',{'goals':goals})
+        saved_amount = int(request.POST.get('Saved_amount', 0))
+        # Update the Saved_amount field in the database
+        goal.Saved_amount += saved_amount
+        goal.per =int(( goal.Saved_amount / goal.Target_amount )*100)
+        goal.save()
+        # Redirect to a different page or view after saving the value
+        return redirect(reverse('single_goal', args=[single_goal_id]))
+    return render(request, 'Single-Goal.html', {'goals': goal})
 
 def logout(request):
     del request.session["user_id"]

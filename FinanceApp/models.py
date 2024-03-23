@@ -73,6 +73,7 @@ class Goals(models.Model):
      Target_amount = models.BigIntegerField()
      Saved_amount = models.BigIntegerField()
      Targe_date = models.DateField()
+     per = models.BigIntegerField()
 
 class GoalsForm(ModelForm):
      class Meta:
