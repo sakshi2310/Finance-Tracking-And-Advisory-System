@@ -43,7 +43,7 @@ class Expance(models.Model):
      user_id = models.ForeignKey(User_Register,on_delete=models.CASCADE)
      amount_type = models.CharField(max_length=100,default="")
      amount = models.BigIntegerField(default=0)
-     amount_sourse = models.ForeignKey(Incomesource,on_delete=models.CASCADE)
+     amount_sourse = models.ForeignKey(Expancesource,on_delete=models.CASCADE)
      date = models.DateTimeField()
      amount_status = models.CharField(max_length=100,default="")
      description = models.CharField(max_length=500,default="")

@@ -12,6 +12,9 @@ from django.urls import reverse
 
 # Create your views here.
 def home(request):
+
+    
+
     return render(request, "index.html")
 
 
@@ -136,17 +139,106 @@ def opt_verfication(request):
 def dashboard(request):
     return render(request, "dashboard.html")
 
-def addincome(request):
+# def addincome(request):
+#     userfrm = IncomeForm()
+#     user = User_Register.objects.filter(id=request.session['user_id']).get()
+#     sourses = Incomesource.objects.all()
+#     types = Amounttype.objects.all()
+#     if 'save' in request.POST:
+#         userfrm = IncomeForm(request.POST)
+#         userfrm.save()
+#         return redirect ('/FinanceApp/income')
+#     return render(request,'Add-income.html',{'sources':sourses,'types':types,'data':userfrm,'User_Id':user})
+# def edit_income(request,edit_id):
+#     user = User_Register.objects.filter(id=request.session['user_id']).get()
+#     sourses = Incomesource.objects.all()
+#     types = Amounttype.objects.all()
+#     Frmobj = Income.objects.filter(id = edit_id).get()
+#     obj = IncomeForm(instance=Frmobj)
+#     if 'save' in request.POST:
+#         obj = IncomeForm(request.POST,instance=Frmobj)
+#         obj.save()
+#         return redirect ('/FinanceApp/income') 
+#     return render (request, 'Add-income.html',{'sources':sourses,'types':types,'data':obj,'User_Id':user})
 
-    return render(request, "Add-income.html")
+# def delete_income(request,del_id):
+#     Income.objects.filter(id=del_id).delete()
+#     return redirect ('/FinanceApp/income')
 
 def income(request):
-
-    return render(request, "income.html")
+    user = request.session['user_id']
+    data = Income.objects.filter(user_id=user)
+    return render(request, 'income.html',{'data':data})
 
 
 def sidebar_header(request):
     return render(request, "sidebar-header.html")
+
+
+def expance(request):
+    user = request.session['user_id']
+    data = Expance.objects.filter(user_id=user)
+    return render(request, 'expance.html',{'data':data})
+
+def add_expance(request):
+    userfrm = ExpanceForm()
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Expancesource.objects.all()
+    types = Amounttype.objects.all()
+    if 'save' in request.POST:
+        userfrm = ExpanceForm(request.POST)
+        userfrm.save()
+        return redirect ('/FinanceApp/expance')
+    return render(request,'Add-expance.html',{'sources':sourses,'types':types,'data':userfrm,'User_Id':user})
+
+def edit_expance(request,edit_id):
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Expancesource.objects.all()
+    types = Amounttype.objects.all()
+    Frmobj = Expance.objects.filter(id = edit_id).get()
+    obj = ExpanceForm(instance=Frmobj)
+    if 'save' in request.POST:
+        obj = ExpanceForm(request.POST,instance=Frmobj)
+        obj.save()
+        return redirect ('/FinanceApp/expance') 
+    return render (request, 'Add-expance.html',{'sources':sourses,'types':types,'data':obj,'User_Id':user})
+
+def delete_expance(request,del_id):
+    Expance.objects.filter(id=del_id).delete()
+    return redirect ('/FinanceApp/expance')
+
+def income(request):
+    user = request.session['user_id']
+    data = Income.objects.filter(user_id=user)
+    return render(request, 'income.html',{'data':data})
+
+def add_income(request):
+    userfrm = IncomeForm()
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Incomesource.objects.all()
+    types = Amounttype.objects.all()
+    if 'save' in request.POST:
+        print("-------------------------",request.POST)
+        userfrm = IncomeForm(request.POST)
+        userfrm.save()
+        return redirect ('/FinanceApp/income')
+    return render(request,'Add-income.html',{'sources':sourses,'types':types,'data':userfrm,'User_Id':user})
+
+def edit_income(request,edit_id):
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Incomesource.objects.all()
+    types = Amounttype.objects.all()
+    Frmobj = Income.objects.filter(id = edit_id).get()
+    obj = IncomeForm(instance=Frmobj)
+    if 'save' in request.POST:
+        obj = IncomeForm(request.POST,instance=Frmobj)
+        obj.save()
+        return redirect ('/FinanceApp/income') 
+    return render (request, 'Add-income.html',{'sources':sourses,'types':types,'data':obj,'User_Id':user})
+
+def delete_income(request,del_id):
+    Income.objects.filter(id=del_id).delete()
+    return redirect ('/FinanceApp/income')
 
 
 def Add_Goals(request):
@@ -187,17 +279,17 @@ def view_goals(request):
             per =round(( saved_amount / target_amount )*100)
     return render(request,'View_Goals.html',{'all_goals':all_goals,'per':per})
 
+cnt = 0
 def single_goal(request,single_goal_id):
     goal = Goals.objects.get(id=single_goal_id)
     if request.method == 'POST':
-        saved_amount = int(request.POST.get('Saved_amount', 0))
-        # Update the Saved_amount field in the database
-        goal.Saved_amount += saved_amount
-        goal.per =int(( goal.Saved_amount / goal.Target_amount )*100)
-        goal.save()
-        # Redirect to a different page or view after saving the value
-        return redirect(reverse('single_goal', args=[single_goal_id]))
-    return render(request, 'Single-Goal.html', {'goals': goal})
+        if 'Edit_amount' in request.POST:
+            cnt += 1
+            saved = int(request.POST['Saved_amount'])
+            goals.Saved_amount += saved
+            goals.save()
+            return HttpResponseRedirect(reverse('your_url_name'))
+    return render(request,'Single-Goal.html',{'goals':goals})
 
 def logout(request):
     del request.session["user_id"]

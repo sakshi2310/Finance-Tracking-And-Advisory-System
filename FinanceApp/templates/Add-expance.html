@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Add Income - moneyMentorHub</title>
+    <title>Add Expance - moneyMentorHub</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,14 +24,14 @@
         <div class="pcoded-content">
             <div class="First_row">
                 <div class="page-header-title">
-                    <h2 class="m-b-10">Income</h2>
+                    <h2 class="m-b-10">Expance</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Your Income</h5>
+                            <h5>Your Expance</h5>
                         </div>
                         <div class="card-body">
                             <form method="post">
@@ -64,9 +64,9 @@
                                 <div class="form-group">
                                     <label for="inputAddress2">Amount Status</label>
                                     <select id="inputAddress2" class="form-control" name="{{data.amount_status.name}}">
+                                        <option value="Paid" {% if row.id == 'Paid' %} selected {% endif %}>Paid</option>
                                         <option value="Panding" {% if row.id == 'Panding' %} selected {% endif %}>Panding
                                         </option>
-                                        <option value="Paid" {% if row.id == 'Paid' %} selected {% endif %}>Paid</option>
                                         <option value="Cancelled" {% if row.id == 'Cancelled' %} selected {% endif %}>
                                             Cancelled</option>
                                         <option value="Refunded" {% if row.id == 'Refunded' %} selected {% endif %}>
