@@ -12,6 +12,9 @@ from django.urls import reverse
 
 # Create your views here.
 def home(request):
+
+    
+
     return render(request, "index.html")
 
 
@@ -136,10 +139,41 @@ def opt_verfication(request):
 def dashboard(request):
     return render(request, "dashboard.html")
 
-def addincome(request):
+# def addincome(request):
+#     userfrm = IncomeForm()
+#     user = User_Register.objects.filter(id=request.session['user_id']).get()
+#     sourses = Incomesource.objects.all()
+#     types = Amounttype.objects.all()
+#     if 'save' in request.POST:
+#         userfrm = IncomeForm(request.POST)
+#         userfrm.save()
+#         return redirect ('/FinanceApp/income')
+#     return render(request,'Add-income.html',{'sources':sourses,'types':types,'data':userfrm,'User_Id':user})
+# def edit_income(request,edit_id):
+#     user = User_Register.objects.filter(id=request.session['user_id']).get()
+#     sourses = Incomesource.objects.all()
+#     types = Amounttype.objects.all()
+#     Frmobj = Income.objects.filter(id = edit_id).get()
+#     obj = IncomeForm(instance=Frmobj)
+#     if 'save' in request.POST:
+#         obj = IncomeForm(request.POST,instance=Frmobj)
+#         obj.save()
+#         return redirect ('/FinanceApp/income') 
+#     return render (request, 'Add-income.html',{'sources':sourses,'types':types,'data':obj,'User_Id':user})
 
-    return render(request, "Add-income.html")
+# def delete_income(request,del_id):
+#     Income.objects.filter(id=del_id).delete()
+#     return redirect ('/FinanceApp/income')
 
+<<<<<<< HEAD
+=======
+def income(request):
+    user = request.session['user_id']
+    data = Income.objects.filter(user_id=user)
+    return render(request, 'income.html',{'data':data})
+
+
+>>>>>>> d7394b2580aa1b8be16b2bf7b9cc3af36a1840d0
 def sidebar_header(request):
     return render(request, "sidebar-header.html")
 

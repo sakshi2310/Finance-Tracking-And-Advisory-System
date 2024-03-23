@@ -32,6 +32,14 @@ urlpatterns = [
     path('FinanceApp/BasicInfo/',basic_info,name='BasicInfo'),
     path('FinanceApp/Login/',login,name='login'),
     path('FinanceApp/dashboard/',dashboard,name='dashboard'),
+<<<<<<< HEAD
+=======
+    path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
+    path('FinanceApp/income/',income,name='income'),
+    # path('FinanceApp/add-income/',addincome,name='income'),
+    # path('FinanceApp/edit-income/<int:edit_id>',edit_income,name='income'),
+    # path('FinanceApp/del-income/<int:del_id>',del_income,name='income'),
+>>>>>>> d7394b2580aa1b8be16b2bf7b9cc3af36a1840d0
     path('FinanceApp/logout/',logout,name='logout'),
     path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
 
