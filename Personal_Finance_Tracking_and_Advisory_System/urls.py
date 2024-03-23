@@ -32,13 +32,26 @@ urlpatterns = [
     path('FinanceApp/BasicInfo/',basic_info,name='BasicInfo'),
     path('FinanceApp/Login/',login,name='login'),
     path('FinanceApp/dashboard/',dashboard,name='dashboard'),
-    path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
-    path('FinanceApp/income/',income,name='income'),
     path('FinanceApp/logout/',logout,name='logout'),
+    path('FinanceApp/otp/',opt_verfication,name='opt_verfication'),
+
+    # income
+    path('FinanceApp/income/',income,name='income'),
+    path('FinanceApp/add-income/',add_income,name='add_income'),
+    path('FinanceApp/edit-income/<int:edit_id>',edit_income,name='edit_income'),
+    path('FinanceApp/delete-income/<int:del_id>',delete_income,name='delete_income'),
+
+    # expance
+    path('FinanceApp/expance/',expance,name='expance'),
+    path('FinanceApp/add-expance/',add_expance,name='add_expance'),
+    path('FinanceApp/edit-expance/<int:edit_id>',edit_expance,name='edit_expance'),
+    path('FinanceApp/delete-expance/<int:del_id>',delete_expance,name='delete_expance'),
 
     # Goals
     path('FinanceApp/add-Goals/',Add_Goals,name='Add_Goals'),
     path('FinanceApp/view-goals/',view_goals,name='view_Goal'),
+    path('FinanceApp/edit-goals/<int:edit_id>',edit_goal,name='edit_goal'),
+    path('FinanceApp/delete-goals/<int:del_id>',delete_goal,name='delete_goal'),
     path('FinanceApp/single-goal/<int:single_goal_id>',single_goal,name="single_goal"),
 
     # demo

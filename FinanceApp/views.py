@@ -140,13 +140,74 @@ def addincome(request):
 
     return render(request, "Add-income.html")
 
-def income(request):
-
-    return render(request, "income.html")
-
-
 def sidebar_header(request):
     return render(request, "sidebar-header.html")
+
+
+def expance(request):
+    user = request.session['user_id']
+    data = Expance.objects.filter(user_id=user)
+    return render(request, 'expance.html',{'data':data})
+
+def add_expance(request):
+    userfrm = ExpanceForm()
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Expancesource.objects.all()
+    types = Amounttype.objects.all()
+    if 'save' in request.POST:
+        userfrm = ExpanceForm(request.POST)
+        userfrm.save()
+        return redirect ('/FinanceApp/expance')
+    return render(request,'Add-expance.html',{'sources':sourses,'types':types,'data':userfrm,'User_Id':user})
+
+def edit_expance(request,edit_id):
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Expancesource.objects.all()
+    types = Amounttype.objects.all()
+    Frmobj = Expance.objects.filter(id = edit_id).get()
+    obj = ExpanceForm(instance=Frmobj)
+    if 'save' in request.POST:
+        obj = ExpanceForm(request.POST,instance=Frmobj)
+        obj.save()
+        return redirect ('/FinanceApp/expance') 
+    return render (request, 'Add-expance.html',{'sources':sourses,'types':types,'data':obj,'User_Id':user})
+
+def delete_expance(request,del_id):
+    Expance.objects.filter(id=del_id).delete()
+    return redirect ('/FinanceApp/expance')
+
+def income(request):
+    user = request.session['user_id']
+    data = Income.objects.filter(user_id=user)
+    return render(request, 'income.html',{'data':data})
+
+def add_income(request):
+    userfrm = IncomeForm()
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Incomesource.objects.all()
+    types = Amounttype.objects.all()
+    if 'save' in request.POST:
+        print("-------------------------",request.POST)
+        userfrm = IncomeForm(request.POST)
+        userfrm.save()
+        return redirect ('/FinanceApp/income')
+    return render(request,'Add-income.html',{'sources':sourses,'types':types,'data':userfrm,'User_Id':user})
+
+def edit_income(request,edit_id):
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    sourses = Incomesource.objects.all()
+    types = Amounttype.objects.all()
+    Frmobj = Income.objects.filter(id = edit_id).get()
+    obj = IncomeForm(instance=Frmobj)
+    if 'save' in request.POST:
+        obj = IncomeForm(request.POST,instance=Frmobj)
+        obj.save()
+        return redirect ('/FinanceApp/income') 
+    return render (request, 'Add-income.html',{'sources':sourses,'types':types,'data':obj,'User_Id':user})
+
+def delete_income(request,del_id):
+    Income.objects.filter(id=del_id).delete()
+    return redirect ('/FinanceApp/income')
 
 
 def Add_Goals(request):
@@ -183,6 +244,20 @@ def view_goals(request):
             per =round(( saved_amount / target_amount )*100)
     return render(request,'View_Goals.html',{'all_goals':all_goals,'per':per})
 
+def edit_goal(request,edit_id):
+    user = User_Register.objects.filter(id=request.session['user_id']).get()
+    Frmobj = Goals.objects.filter(id = edit_id).get()
+    obj = GoalsForm(instance=Frmobj)
+    if 'submit' in request.POST:
+        obj = GoalsForm(request.POST,instance=Frmobj)
+        obj.save()
+        return redirect ('/FinanceApp/view-goals') 
+    return render (request, 'Add_Goals.html',{'goalfrm':obj,'Users_id':user})
+
+def delete_goal(request,del_id):
+    Goals.objects.filter(id=del_id).delete()
+    return redirect ('/FinanceApp/view-goals')
+
 cnt = 0
 def single_goal(request,single_goal_id):
     global cnt
@@ -193,7 +268,6 @@ def single_goal(request,single_goal_id):
             saved = int(request.POST['Saved_amount'])
             goals.Saved_amount += saved
             goals.save()
-            return HttpResponseRedirect(reverse('your_url_name'))
     return render(request,'Single-Goal.html',{'goals':goals})
 
 def logout(request):

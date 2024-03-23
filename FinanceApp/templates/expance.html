@@ -28,17 +28,17 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title" style="display: flex; justify-content: space-between;">
-                                <h5 class="m-b-10" style="display: inline;">Income History</h5>
-                                <a href="/FinanceApp/add-income">
-                                <button type="button" class="btn  btn-primary btn-sm btn-my">Add Income</button>
+                                <h5 class="m-b-10" style="display: inline;">Expance History</h5>
+                                <a href="/FinanceApp/add-expance">
+                                <button type="button" class="btn  btn-primary btn-sm btn-my">Add Expance</button>
                                 </a>
                             </div>
-                            <!-- <button type="button" class="btn  btn-primary btn-sm btn-my">Add Income</button> -->
+                            <!-- <button type="button" class="btn  btn-primary btn-sm btn-my">Add Expance</button> -->
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/FinanceApp/dashboard"><i
                                             class="feather icon-home"></i></a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="/FinanceApp/income">income</a></li>
+                                <li class="breadcrumb-item"><a href="/FinanceApp/expance">expance</a></li>
                             </ul>
                         </div>
                     </div>
@@ -90,10 +90,10 @@
                                                 {{row.description}}
                                             </td>
                                             <td>
-                                                <a href="/FinanceApp/edit-income/{{row.id}}">Edit</a>
+                                                <a href="/FinanceApp/edit-expance/{{row.id}}">Edit</a>
                                             </td>
                                             <td>
-                                                <a href="/FinanceApp/delete-income/{{row.id}}">Delete</a>
+                                                <a href="/FinanceApp/delete-expance/{{row.id}}">Delete</a>
                                             </td>
                                         </tr>
                                         {% endfor %}

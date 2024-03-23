@@ -2683,8 +2683,8 @@ textarea.form-control {
 }
 .btn-my
      {
-          width: 150px;
-          height: 40px;
+          width: 150px !important;
+          height: 40px !important;
      }
 
 @media (prefers-reduced-motion: reduce) {
